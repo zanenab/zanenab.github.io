@@ -1,8 +1,9 @@
+---
 layout: post
 title: "Working With GitHub Pages"
 date: 2023-03-09 20:03:22 -0000
 categories: CATEGORY-1 CATEGORY-2
-
+---
 
 ## A New Adventure
 
