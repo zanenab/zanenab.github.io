@@ -1,0 +1,14 @@
+docs_list_title: Site Navigation 
+docs:
+
+- title: Introduction
+  url: introduction.html/introduction
+
+- title: About
+  url: zanenab.github.io/about
+
+- title: Home
+  url: zanenab.github.io
+
+- title: Posts
+  url: introduction.html/posts
