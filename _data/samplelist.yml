@@ -2,13 +2,13 @@ docs_list_title: Site Navigation
 docs:
 
 - title: Introduction
-  url: introduction.html/introduction
+  url: /introduction
 
 - title: About
-  url: zanenab.github.io/about
+  url: /about
 
 - title: Home
-  url: zanenab.github.io
+  url: / 
 
 - title: Posts
-  url: introduction.html/posts
+  url: /posts
