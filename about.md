@@ -10,7 +10,7 @@ I am called Will.
 [About](https://zanenab.github.io/test.html)
 
 
-ul>
+<ul>
   {% for post in site.posts %}
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a>
