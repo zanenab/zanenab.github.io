@@ -7,7 +7,8 @@ permalink: /about
 I am called Will. 
 
 
-[About](https://zanenab.github.io/test.html)
+[Main Site](https://zanenab.github.io)
+[Test Website](https://zanenab.github.io/test.html)
 
 
 <ul>
