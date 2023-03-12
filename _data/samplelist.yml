@@ -1,14 +1,17 @@
 docs_list_title: Site Navigation 
 docs:
 
-- title: Introduction
-  url: /introduction
+- title: Home
+  url: / 
 
 - title: About
   url: /about
 
-- title: Home
-  url: / 
+- title: Work and Resume 
+  url: /documents
+
+- title: My journey
+  url: /introduction
 
 - title: Posts
   url: /_posts
