@@ -7,7 +7,7 @@
    {% endfor %}
 </ul>
 
-[About](https://zanenab.github.io/about)
+[About](https://zanenab.github.io/contact.html)
 
 
 
