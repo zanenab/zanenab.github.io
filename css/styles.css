@@ -1,20 +1,13 @@
-body {
-    background-color: powderblue;
-}
-h1 {
-    color: greenyellow;
-}
-p {
-    border: 2px solid darkblue;
-    padding: 5%;
-    color: paleturquoise;
-}
+body {margin: 0;}
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 li {
     float: left;
@@ -26,7 +19,6 @@ li a {
     padding: 14px 16px;
     text-decoration: none;
 }
-/*
 li a:hover:not(.active) {
     background-color: #111;
 }
@@ -34,4 +26,3 @@ li a:hover:not(.active) {
 .active {
     background-color: #04AA6D;
 }
-*/
