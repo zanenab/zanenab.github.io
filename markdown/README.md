@@ -7,7 +7,7 @@
    {% endfor %}
 </ul>
 
-[Website](https://zanenab.github.io/main/home.html)
+[Website](https://zanenab.github.io/index.hmtl)
 <br>
 [Website](https://zanenab.github.io/secondary/example.html)
 
