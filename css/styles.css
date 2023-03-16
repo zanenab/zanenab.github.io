@@ -1,4 +1,4 @@
-body {margin: 0;}
+body#topbar {margin: 0;}
 ul {
     list-style-type: none;
     margin: 0;
@@ -9,17 +9,17 @@ ul {
     top: 0;
     width: 100%;
 }
-li {
+li#topbar {
     float: left;
 }
-li a {
+li#topbar a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-li a:hover:not(.active) {
+li#topbar a:hover:not(.active) {
     background-color: #111;
 }
 
