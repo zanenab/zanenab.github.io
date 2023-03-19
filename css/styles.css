@@ -26,3 +26,22 @@ div.topbar li a:hover:not(.active) {
 .active {
     background-color: #04AA6D;
 }
+div.body {
+    padding:20px;
+    margin-top: 30px;
+    background-color: gray;
+    height: 1500px;
+}
+div.body title {
+    font-family: Copperplate, Papyrus, Fantasy;
+    text-align: center;
+}
+div.body h1 {
+    font-family: 'Courier New', Courier, monospace;
+}
+div.body h2 {
+    padding: 20px;
+}
+div.body p {
+    padding: 20px;
+}
