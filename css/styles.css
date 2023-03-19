@@ -4,7 +4,11 @@
     padding: 20px;
 }
 body {margin: 0;}
-div.topbar ul {
+.topbar {
+    overflow: hidden;
+    background-color: #333;
+}
+.topbar ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -14,39 +18,45 @@ div.topbar ul {
     top: 0;
     width: 100%;
 }
-div.topbar li {
+.topbar li {
     float: left;
 }
-div.topbar li a {
+.topbar li a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-div.topbar li a:hover:not(.active) {
+.topbar li a:hover:not(.active) {
     background-color: #111;
 }
 
 .active {
     background-color: #04AA6D;
 }
-div.body {
-    padding:20px;
-    margin-top: 30px;
-    background-color: gray;
-    height: 1500px;
+.column {
+  float: left;
 }
-div.body title {
-    font-family: Copperplate, Papyrus, Fantasy;
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column.side, .column.middle {
+    width: 100%;
+  }
+}
+.footer {
+    background-color: #f1f1f1;
     text-align: center;
-}
-div.body h1 {
-    font-family: 'Courier New', Courier, monospace;
-}
-div.body h2 {
-    padding: 20px;
-}
-div.body p {
-    padding: 20px;
+    padding: 10px;
 }
