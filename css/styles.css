@@ -8,8 +8,6 @@
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    /* position: fixed; */
-    /* top: 0; */
     width: 100%;
 }
 .topbar li {
@@ -25,12 +23,36 @@
 .topbar li a:hover:not(.active) {
     background-color: #111;
 }
-
 .active {
     background-color: #04AA6D;
 }
 .column {
   float: left;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: #04AA6D;
+  color: white;
 }
 
 /* Left and right column */
@@ -42,23 +64,17 @@
 .column.middle {
   width: 50%;
 }
-
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;
 }
-
 .sticky + .content {
   padding-top: 60px;
 }
-
-
-
 * {
   box-sizing: border-box;
 }
-
 body {
   font-family: Arial;
   padding: 10px;
@@ -71,31 +87,8 @@ body {
   text-align: center;
   background: white;
 }
-
 .header h1 {
   font-size: 50px;
-}
-
-/* Style the top navigation bar */
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-/* Style the topnav links */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change color on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
 }
 
 /* Create two unequal columns that floats next to each other */
@@ -152,7 +145,7 @@ body {
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
-  .topnav a {
+  .topbar a {
     float: none;
     width: 100%;
   }

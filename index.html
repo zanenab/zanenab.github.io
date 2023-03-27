@@ -9,7 +9,7 @@
         <p>Window should be responsive</p>
     </div>
 
-    <div class="topbar">
+    <div class="topbar" id="navbar">
         <ul>
             <li><a class="active" href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
@@ -19,7 +19,7 @@
         </ul>
     </div>
 
-    <div class="row">
+    <div class="row content">
         <div class="column middle">
             <title>Home</title>
             <h1>The Voyage of the <strong>EWC</strong></h1>
@@ -141,5 +141,21 @@
     <div class="footer">
         <h2>Foot</h2>
     </div>
+
+    <script>
+    window.onscroll = function() {myFunction()};
+    
+    var navbar = document.getElementById("navbar");
+    var sticky = navbar.offsetTop;
+    
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+    </script>
+
 </body>
 </html>
