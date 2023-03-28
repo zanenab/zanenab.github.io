@@ -9,13 +9,13 @@
         <p>Window should be responsive</p>
     </div>
 
-    <div class="topnav">
+    <div class="topbar" id="navbar">
         <ul>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="posts.html">Blog</a>
-            <a href="documents.html">Documents</a>
-            <a class="active" href="examples.html">Example</a>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="posts.html">Blog</a></li>
+            <li><a href="documents.html">Documents</a></li>
+            <li><a class="active" href="examples.html">Example</a></li>
         </ul>
     </div>
 
@@ -62,7 +62,7 @@
     <script>
       window.onscroll = function() {myFunction()};
       
-      var navbar = document.getElementById("topnav");
+      var navbar = document.getElementById("topbar");
       var sticky = navbar.offsetTop;
       
       function myFunction() {
