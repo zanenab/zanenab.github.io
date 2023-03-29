@@ -64,6 +64,11 @@
 .column.middle {
   width: 50%;
 }
+
+.column.middle h1 {
+  text-align-last: center;
+}
+
 .sticky {
   position: fixed;
   top: 0;
