@@ -1,69 +1,59 @@
+/*
+ Top naviagtion bar style items
+*/
 .topbar {
-    overflow: hidden;
-    background-color: #333;
+  overflow: hidden;
+  background-color: #333;
 }
 .topbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 100%;
 }
 .topbar li {
-    float: left;
+  float: left;
 }
 .topbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+  display: block;
+  color: rgb(39, 48, 146);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 .topbar li a:hover:not(.active) {
-    background-color: #111;
+  background-color: #111;
 }
+
 .active {
-    background-color: #04AA6D;
-}
-.column {
-  float: left;
+  background-color: #04aa6d;
 }
 
 #navbar {
   overflow: hidden;
-  background-color: #333;
+  background-color: #186621;
 }
-
 #navbar a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #d35454;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
-
 #navbar a:hover {
   background-color: #ddd;
   color: black;
 }
-
 #navbar a.active {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
 }
 
-/* Left and right column */
-.column.side {
-  width: 25%;
-}
-
-/* Middle column */
-.column.middle {
-  width: 50%;
-}
+/* Sticky effect for the top bar */
 .sticky {
   position: fixed;
   top: 0;
@@ -72,28 +62,59 @@
 .sticky + .content {
   padding-top: 60px;
 }
+
+/*
+  Three column design classes
+*/
+/* Main body items */
+.column {
+  float: left;
+}
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/*
+  General content classes and styles
+*/
 * {
   box-sizing: border-box;
 }
 body {
   font-family: Arial;
   padding: 10px;
-  background: #f1f1f1;
+  background: #000000;
 }
 
-/* Header/Blog Title */
+/* 
+  Header/Blog Title 
+*/
 .header {
   padding: 30px;
   text-align: center;
   background: white;
+  cursor: url("../cursor_circle.png") 16 16, auto;
 }
 .header h1 {
   font-size: 50px;
 }
 
-/* Create two unequal columns that floats next to each other */
+#container {
+  width: 1000px;
+  height: 1000px;
+  border: 1px solid blue;
+}
+
+/* 
+  Create two unequal columns that floats next to each other 
+*/
 /* Left column */
-.leftcolumn {   
+.leftcolumn {
   float: left;
   width: 75%;
 }
@@ -106,28 +127,37 @@ body {
   padding-left: 20px;
 }
 
-/* Fake image */
+/* 
+  Fake image 
+*/
 .fakeimg {
   background-color: #aaa;
   width: 100%;
   padding: 20px;
 }
 
-/* Add a card effect for articles */
+/* 
+  Add a card effect for articles 
+*/
 .card {
   background-color: white;
   padding: 20px;
   margin-top: 20px;
 }
 
-/* Clear floats after the columns */
+/* 
+  Clear floats after the columns 
+  Creat a row of columns
+*/
 .row::after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Footer */
+/* 
+  Footer 
+*/
 .footer {
   padding: 20px;
   text-align: center;
@@ -137,7 +167,8 @@ body {
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-  .leftcolumn, .rightcolumn {   
+  .leftcolumn,
+  .rightcolumn {
     width: 100%;
     padding: 0;
   }
