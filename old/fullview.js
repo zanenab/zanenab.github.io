@@ -1,10 +1,5 @@
 $(document).ready(function () {
   var fv = $("#fullview").fullView({
-    //Navigation
-    navbar: "#navbar",
-    dots: true,
-    dotsPosition: "right",
-
     //Scrolling
     easing: "swing",
     backToTop: true,

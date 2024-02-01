@@ -1,7 +1,7 @@
 /*
  Top naviagtion bar style items
 */
-.topbar {
+/* .topbar {
   overflow: hidden;
   background-color: #333;
 }
@@ -54,14 +54,14 @@
 }
 
 /* Sticky effect for the top bar */
-.sticky {
+/* .sticky {
   position: fixed;
   top: 0;
   width: 100%;
 }
 .sticky + .content {
   padding-top: 60px;
-}
+} */
 
 /*
   Three column design classes
@@ -180,4 +180,4 @@ body {
     float: none;
     width: 100%;
   }
-}
+} */
