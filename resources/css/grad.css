@@ -4,9 +4,12 @@ body {
     height: 100%;
     margin: 0 auto;
     padding: 0;
+    background-attachment: #000;
 }
 
 body {
+    overflow-x: hidden;
+    overflow-y: scroll;
     padding: 0;
     margin: 0 auto;
     cursor: url("../cursors/cursor_circle.png") 16 16, auto;
@@ -17,7 +20,7 @@ section {
     padding: 0;
     margin: 0 auto;
     display: block;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 }
 
@@ -50,7 +53,7 @@ h1 {
 .navbar {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 10%;
     height: 10%;
     border: 2px solid #36515e;
 }
@@ -71,6 +74,7 @@ h1 {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    display: none;
 }
 
 @font-face {
@@ -84,45 +88,10 @@ h1 {
 }
 
 
-/* .cursor_tracer
-{
 
-} */
-
-
-.small{
-  width: 6px;
-  height: 6px;
-  border: 2px solid #fff;
-  border-radius: 50%;
+canvas {
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-attachment: #000;
 }
-.big{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-bottom: 20rem;
-  animation-name: stretch;
-            animation-duration: 2.0s;
-            animation-timing-function: ease-out;
-            animation-direction: alternate;
-            animation-iteration-count: infinite;
-            animation-play-state: running;
-}
-
-
-@keyframes stretch {
-            0% {
-
-                opacity: 0.2;
-                background-color: green;
-                border-radius: 100%;
-            }
-
-            50% {
-                background-color: orange;
-            }
-
-            100% {
-                background-color: red;
-            }
-        }
