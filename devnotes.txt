@@ -1,0 +1,4 @@
+> tsc file.ts
+this compiles the type 
+> node file.js
+this run the javascript file
