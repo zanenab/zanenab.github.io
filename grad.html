@@ -4,16 +4,13 @@
     <link href="./resources/css/grad.css" type="text/css" rel="stylesheet" />
   </head>
 
-  <body>
+  <canvas id="starCanvas"></canvas>
+  <script src="./resources/js/magic.js"></script>
 
-    <!-- <div class="navbarDock">Dock</div> -->
-    <div class="navbar">
-      NavBar
-      <div class="button">Home</div>
-      <div class="button">About</div>
-      <div class="button">Work</div>
-      <div class="button">two</div>
-    </div>
+  <body>
+    <button type="button" class="collapsible navbar">NavBar</button>
+    <div class="content"><p>Home</p><p>About</p></div>
+    <div class="content"><p>About</p></div>
 
     <div>
       <section class="colorGrade">
@@ -22,12 +19,9 @@
       </section>
     </div>
     <div>
-      <section class="colorGrade">block two</section>
+      <section class="colorGradeReverse">block two</section>
     </div>
 
-    <canvas id="starCanvas"></canvas>
-
-    <script src="./resources/js/cursor.js"></script>
-    <script src="./resources/js/magic.js"></script>
+    <script src="./resources/js/collapsible.js"></script>
   </body>
 </html>
