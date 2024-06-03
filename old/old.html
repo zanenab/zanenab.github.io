@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Snap scroll with CSS | Full Page Scrolling Effects</title>
+    <link href="./resources/css/fullview.css" type="text/css" rel="stylesheet" />
+
+    <!-- Javascript Files -->
+    <script  src="https://code.jquery.com/jquery-3.5.1.min.js"  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./js/fullview.js"></script>    
+
+  </head>
+  <body>
+
+    <!-- MENU BAR     -->
+    <div id="navbar">
+      <ul>
+        <li><a href="#section1"> Section 1 </a></li>
+        <li><a href="#section2"> Section 2 </a></li>
+        <li><a href="#section4"> Section 4 </a></li>
+        <li>
+          <a href="https://github.com/seeratawan01/fullview.js" target="_blank">
+            External Link
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- SECTIONS  -->
+    <div id="fullview">
+      <div id="section1" class="active">
+        <h2>Section 1</h2>
+        <button title="Down" id="down"><span>Click Here</span></button>
+      </div>
+      <div id="section2">
+        <h2>Section 2</h2>
+        <div class="form">
+          <form>
+            <label for="select">Choose Section To Scroll</label>
+            <select name="section" id="select">
+              <option value="0">Section: 1</option>
+              <option value="1">Section: 2</option>
+              <option value="2">Section: 3</option>
+              <option value="3">Section: 4</option>
+            </select>
+          </form>
+        </div>
+      </div>
+      <div id="section3">
+        <h2>Section 3</h2>
+      </div>
+      <div id="section4">
+        <h2>Section 4</h2>
+      </div>
+    </div>
+  </body>
+</html>
