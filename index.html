@@ -34,16 +34,18 @@
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/journal/bootstrap.min.css" integrity="sha384-QDSPDoVOoSWz2ypaRUidLmLYl4RyoBWI44iA5agn6jHegBxZkNqgm2eHb6yZ5bYs" crossorigin="anonymous"> -->
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
 </head>
 
-<body class="bg-dark">
-    <div class="d-flex justify-content-center align-items-center vh-100">
+<body class="">
+    <div class="d-flex justify-content-center align-items-center  vh-100 ">
 
-        <div class="card bg-danger text-white col-12 col-md-8 mt-3 mb-2 pl-0 pr-0">
-            <header class="card-header">
-                <h1>
-                    Get your weather now
-                </h1>
+        <div class="card border-info col-12 col-md-10 mt-3 mb-2 pl-0 pr-0  mb-auto mt-auto">
+            <header class="card-header text-center">
+                <h2 class="mb-0">
+                    Weather Now
+                </h2>
             </header>
 
             <div class="card-body">
@@ -51,34 +53,60 @@
 
                     <!-- Left side of the card -->
                     <div class="col-12 col-md-6">
-                        <div class="form-floating mb-3">
-                            <input id="numLatitude" class="form-control mt-2" type="number" placeholder="Latitude" aria-label="Number input for latitude." value="36.16" required>
-                            <label for="numLatitude">Latitude</label>
+                        <p>Enter your coordinates in decimal format to retrieve your weather data.</p>
+                        <div class="row">
+                            <div class="form-floating mb-2 col-6">
+                                <input id="numLatitude" class="form-control border-info mt-1" type="number" placeholder="Latitude" aria-label="Number input for latitude." value="36.16" required>
+                                <label for="numLatitude">Latitude</label>
+                            </div>
+
+                            <div class="form-floating mb-2 col-6">
+                                <input id="numLongitude" class="form-control border-info mt-1" type="number" placeholder="Longitude" aria-label="Number input for longitude." value="-85.50" required>
+                                <label for="numLongitude">Longitude</label>
+                            </div>
                         </div>
 
-                        <div class="form-floating mb-3">
-                            <input id="numLongitude" class="form-control mt-2" type="number" placeholder="Longitude" aria-label="Number input for longitude." value="-85.50" required>
-                            <label for="numLongitude">Longitude</label>
+                        <button class="btn btn-info col-12 mt-0" type="button" id="btnGetWeather" aria-label="Button to get weather data.">Get Weather</button>
+
+
+                        <div class="row">
+                            <div class="col-12 text-center mt-3">
+                                <h1>
+                                    <i id="divPercipitationIcon" class="bi bi-cloud-lightning-fill"></i>
+                                </h1>
+                            </div>
+                            <div id="divPercipitation" class="col-12">
+                                Condition ...
+                            </div>
+                            <div id="divTemperature" class="col-12">
+                                Temperature: ...
+                            </div>
+                            <div id="divHumidity" class="col-12">
+                                Humidity: ...
+                            </div>
                         </div>
 
-                        <button class="btn btn-info col-12 mt-2" type="button" id="btnGetWeather" aria-label="Button to get weather data.">Get Weather</button>
                     </div>
 
                     <!-- Right side of the card -->
-                    <div class="col-12 col-md-6 mt-3">
-                        <div class="row">
-                            <div class="col-8" style="max-width: 50%; max-height: 50%;">
-                                <p id="parPercipitationIcon"></p>
-                            </div>
-                            <div class="col-12">
-                                <p id="parPercipitation">Condition</p>
-                            </div>
-                            <div class="col-12">
-                                <p id="parTemperature">Temperature: ...</p>
-                            </div>
-                            <div class="col-12">
-                                <p id="parHumidity">Humidity: ...</p>
-                            </div>
+                    <div class="col-12 col-md-6 mt-0">
+
+                        <div class="overflow-auto mt-0 ">
+                            <table id="tblDailyWeather" class="table-info compact display mt-0" aria-label="Table showing weather information for the next 7 days">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Date</th>
+                                        <th>Temp High</th>
+                                        <th>Temp Low</th>
+                                        <th>Sun Rise</th>
+                                        <th>Sun Set</th>
+                                        <th>Rain</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tblDailyWeatherData">
+                                </tbody>
+                            </table>
                         </div>
 
                     </div>
@@ -86,7 +114,7 @@
             </div>
 
             <footer class="card-footer pt-1 pb-1">
-                Weather data provided by <a href="https://open-meteo.com/">Open-Meteo</a> weather api.
+                Weather data provided by <a href="https://open-meteo.com/">Open-Meteo</a>.
             </footer>
 
         </div>
@@ -96,15 +124,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- For Data Tables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.4/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.dataTables.js"></script>
 
     <script>
         const regLat = /^(-||\+)([0-9](\.\d+)?|([0-8][0-9])(\.\d+)?|90)$/
         const regLong = /^(-||\+)([0-9]{1,2}|1[0-7][0-9])(\.\d+)?|180$/
 
         const strBaseWeatherUrl = 'https://api.open-meteo.com/v1/forecast';
-        const srtLatLong = 'latitude=52.52&longitude=13.41';
-        const strRequestedData = 'current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover';
-        const strUnitArguments = 'temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&forecast_days=1';
+        const strRequestedData = 'current=temperature_2m,relative_humidity_2m,weather_code';
+        const strHourly        = 'hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code';
+        const strDaily         = 'daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,precipitation_sum,rain_sum';
+        const strUnitArguments = 'temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FChicago&temporal_resolution=hourly_3';
 
         const dctWeatherCodes = {
             0: "Clear Sky",
@@ -136,8 +170,7 @@
             96: "Thunderstorm With Slight Hail",
             99: "Thunderstorm With Heavy Hail",
         }
-        const strSVGData = '';
-        const dctWeatherCodeIcons = {
+        const dctWeatherCodeIconsSVG = {
             0:  '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-sun-fill" viewBox="0 0 16 16"> <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/> </svg>',
             1:  '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-cloud-sun-fill" viewBox="0 0 16 16"> <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z"/> <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/> </svg>', 
             2:  '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-cloud-sun-fill" viewBox="0 0 16 16"> <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z"/> <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/> </svg>', 
@@ -167,23 +200,108 @@
             96: '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-cloud-lightning-fill" viewBox="0 0 16 16"> <path d="M7.053 11.276A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724zm6.352-7.249a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973"/> </svg>',
             99: '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-cloud-lightning-fill" viewBox="0 0 16 16"> <path d="M7.053 11.276A.5.5 0 0 1 7.5 11h1a.5.5 0 0 1 .474.658l-.28.842H9.5a.5.5 0 0 1 .39.812l-2 2.5a.5.5 0 0 1-.875-.433L7.36 14H6.5a.5.5 0 0 1-.447-.724zm6.352-7.249a5.001 5.001 0 0 0-9.499-1.004A3.5 3.5 0 1 0 3.5 10H13a3 3 0 0 0 .405-5.973"/> </svg>',
         }
+        const dctWeatherCodeIconsI = {
+            0:  '<i class="bi bi-sun-fill"></i>',
+            1:  '<i class="bi bi-cloud-sun-fill"></i>',
+            2:  '<i class="bi bi-cloud-sun-fill"></i>',
+            3:  '<i class="bi bi-cloud-fill"></i>',
+            45: '<i class="bi bi-cloud-fog-fill"></i>',
+            48: '<i class="bi bi-cloud-fog-fill"></i>',
+            51: '<i class="bi bi-cloud-drizzle-fill"></i>',
+            53: '<i class="bi bi-cloud-drizzle-fill"></i>',
+            55: '<i class="bi bi-cloud-drizzle-fill"></i>',
+            56: '<i class="bi bi-cloud-drizzle-fill"></i>',
+            57: '<i class="bi bi-cloud-drizzle-fill"></i>',
+            61: '<i class="bi bi-cloud-rain-fill"></i>',
+            63: '<i class="bi bi-cloud-rain-fill"></i>',
+            65: '<i class="bi bi-cloud-rain-fill"></i>',
+            66: '<i class="bi bi-cloud-rain-fill"></i>',
+            67: '<i class="bi bi-cloud-rain-fill"></i>',
+            71: '<i class="bi bi-cloud-snow-fill"></i>',
+            73: '<i class="bi bi-cloud-snow-fill"></i>',
+            75: '<i class="bi bi-cloud-snow-fill"></i>',
+            77:	'<i class="bi bi-cloud-snow-fill"></i>',
+            80: '<i class="bi bi-cloud-rain-heavy-fill"></i>',
+            81: '<i class="bi bi-cloud-rain-heavy-fill"></i>',
+            82: '<i class="bi bi-cloud-rain-heavy-fill"></i>',
+            85: '<i class="bi bi-cloud-snow-fill"></i>',
+            86: '<i class="bi bi-cloud-snow-fill"></i>',
+            95: '<i class="bi bi-cloud-lightning-fill"></i>',
+            96: '<i class="bi bi-cloud-lightning-fill"></i>',
+            99: '<i class="bi bi-cloud-lightning-fill"></i>'
+        }
+        const dctWeatherCodeIconsClass = {
+            0:  "bi-sun-fill",
+            1:  "bi-cloud-sun-fill",
+            2:  "bi-cloud-sun-fill",
+            3:  "bi-cloud-fill",
+            45: "bi-cloud-fog-fill",
+            48: "bi-cloud-fog-fill",
+            51: "bi-cloud-drizzle-fill",
+            53: "bi-cloud-drizzle-fill",
+            55: "bi-cloud-drizzle-fill",
+            56: "bi-cloud-drizzle-fill",
+            57: "bi-cloud-drizzle-fill",
+            61: "bi-cloud-rain-fill",
+            63: "bi-cloud-rain-fill",
+            65: "bi-cloud-rain-fill",
+            66: "bi-cloud-rain-fill",
+            67: "bi-cloud-rain-fill",
+            71: "bi-cloud-snow-fill",
+            73: "bi-cloud-snow-fill",
+            75: "bi-cloud-snow-fill",
+            77:	"bi-cloud-snow-fill",
+            80: "bi-cloud-rain-heavy-fill",
+            81: "bi-cloud-rain-heavy-fill",
+            82: "bi-cloud-rain-heavy-fill",
+            85: "bi-cloud-snow-fill",
+            86: "bi-cloud-snow-fill",
+            95: "bi-cloud-lightning-fill",
+            96: "bi-cloud-lightning-fill",
+            99: "bi-cloud-lightning-fill"
+        }
 
+        let table = new DataTable('#tblDailyWeather', {
+            info: false,
+            ordering: false,
+            searching: false,
+            paging: false,
+            responsive: true
+        });
 
         async function getWeather(strUserLatitude, strUserLongitude) {
             // This is a response, not data. Need the await to avoid a race condition.
             try { 
-                const objResponse =  await fetch(`${strBaseWeatherUrl}?latitude=${strUserLatitude}&longitude=${strUserLongitude}&${strRequestedData}&${strUnitArguments}`)
+                const objResponse =  await fetch(`${strBaseWeatherUrl}?latitude=${strUserLatitude}&longitude=${strUserLongitude}&${strRequestedData}&${strHourly}&${strDaily}&${strUnitArguments}`)
                 if (!objResponse.ok) {
                     throw new Error(`HTTP Error Status: ${objResponse.status}`);
                 }
                 const objData = await objResponse.json();
                 console.log(objData);
 
-                document.getElementById('#')
-                document.querySelector("#parTemperature").innerHTML = `Temperature: ${objData.current.temperature_2m} ${objData.current_units.temperature_2m}`
-                document.querySelector("#parHumidity").innerHTML = `Humidity: ${objData.current.relative_humidity_2m} ${objData.current_units.relative_humidity_2m}`
-                document.querySelector("#parPercipitation").innerHTML = dctWeatherCodes[objData.current.weather_code]
-                document.querySelector("#parPercipitationIcon").innerHTML = dctWeatherCodeIcons[objData.current.weather_code]
+                let dataString = "";
+                for (let i = 0; i < objData.daily.time.length; i++){
+                    dataString += `<tr> 
+                        <td> <i class="bi ${dctWeatherCodeIconsClass[objData.current.weather_code]}" aria-label="Icon showing the weather conditions can be described as ${dctWeatherCodes[objData.current.weather_code]}."></i></td>  
+                        <td>${objData.daily.time[i]}</td> 
+                        <td>${objData.daily.temperature_2m_max[i]} ${objData.daily_units.temperature_2m_max}</td> 
+                        <td>${objData.daily.temperature_2m_min[i]} ${objData.daily_units.temperature_2m_min}</td> 
+                        <td>${objData.daily.sunrise[i].slice(11)}</td> 
+                        <td>${objData.daily.sunset[i].slice(11)}</td> 
+                        <td>${objData.daily.precipitation_sum[i]} ${objData.daily_units.precipitation_sum}</td> 
+                    </tr> `
+                                
+                }
+                
+
+                document.querySelector("#divTemperature").innerHTML = `Temperature: ${objData.current.temperature_2m} ${objData.current_units.temperature_2m}`
+                document.querySelector("#divHumidity").innerHTML = `Humidity: ${objData.current.relative_humidity_2m} ${objData.current_units.relative_humidity_2m}`
+                document.querySelector("#divPercipitation").innerHTML = `Condition: ${dctWeatherCodes[objData.current.weather_code]}`
+                document.querySelector("#divPercipitationIcon").className = `bi ${dctWeatherCodeIconsClass[objData.current.weather_code]}`
+
+                document.querySelector('#tblDailyWeatherData').innerHTML = dataString;
+
+
 
             } catch (objError) {
                 console.log('Error fetching objData', objError);
