@@ -44,10 +44,11 @@
             <div class="col-12 col-md-6">
                 <h1 class="text-center mb-0">7 Day Forcast</h1>
                 <div class="overflow-auto mt-0">
-                    <table id="tblDailyWeather" class="table compact mt-0" style="border-radius: 15px; overflow:hidden; background-color: white; " aria-label="Table showing weather information for the next 7 days">
+                    <table id="tblDailyWeather" class="table mt-0 px-3 pb-3" style="border-radius: 15px; overflow:hidden; background-color: white; " aria-label="Table showing weather information for the next 7 days">
                         <thead>
                             <tr>
-                                <th></th> <th>Date</th> <th>Temp High</th> <th>Temp Low</th> <th>Sun Rise</th> <th>Sun Set</th> <th>Rain</th>
+                                <th></th> <th>Date</th> <th>Temp Range</th> <th>Day Light</th>
+
                             </tr>
                         </thead>
                         <tbody id="tblDailyWeatherData"> </tbody>
@@ -163,15 +164,23 @@
                 // Add 7 day forcast to the table
                 let strTableRows = "";
                 for (let i = 0; i < objData.daily.time.length; i++){
-                    strTableRows += `<tr> 
-                        <td> <i class="bi ${dctWeatherCodeIconsClasses[objData.current.weather_code]}" aria-label="Icon showing the weather conditions can be described as ${dctWeatherCodeConditions[objData.current.weather_code]}."></i></td>  
-                        <td>${objData.daily.time[i]}</td> 
-                        <td>${objData.daily.temperature_2m_max[i]} ${objData.daily_units.temperature_2m_max}</td> 
-                        <td>${objData.daily.temperature_2m_min[i]} ${objData.daily_units.temperature_2m_min}</td> 
-                        <td>${objData.daily.sunrise[i].slice(11)}</td> 
-                        <td>${objData.daily.sunset[i].slice(11)}</td> 
-                        <td>${objData.daily.precipitation_sum[i]} ${objData.daily_units.precipitation_sum}</td> 
+                    let maxTemp = Math.trunc(objData.daily.temperature_2m_max[i])
+                    let minTemp = Math.trunc(objData.daily.temperature_2m_min[i])
+                    let curDat = objData.daily.time[i].slice(5)
+                    strTableRows += `
+                    <tr class="pb-0 pt-5"> 
+                        <td class="text-center"> <i class="bi ${dctWeatherCodeIconsClasses[objData.current.weather_code]}" aria-label="Icon showing the weather conditions can be described as ${dctWeatherCodeConditions[objData.current.weather_code]}."></i></td>  
+                        <td>${curDat}</td> 
+                        <td>${minTemp} - ${maxTemp} ${objData.daily_units.temperature_2m_max}</td> 
+                        <td>${objData.daily.sunrise[i].slice(11)} - ${objData.daily.sunset[i].slice(11)}</td>
                     </tr> `
+
+                    if (parseFloat(objData.daily.precipitation_sum[i]) > 0.0) {
+                        strTableRows += `
+                        <tr>
+                                <td colspan="4" class="small mb-2 text-center">Expect ${objData.daily.precipitation_sum[i]} (${objData.daily_units.precipitation_sum}) of precipitation</td>
+                        </tr> `
+                    }
                 }
                 document.querySelector('#tblDailyWeatherData').innerHTML = strTableRows;
             } catch (objError) {
