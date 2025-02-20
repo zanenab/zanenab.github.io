@@ -29,20 +29,19 @@
 </head>
 
 <body style="background: linear-gradient(to bottom right, rgb(142, 206, 209) 0%, rgb(54, 97, 124) 100%); height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed;">
-    <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+    <div class="d-flex flex-column  align-items-center vh-100">
 
-        <div class="col-10 row">
-
+        <div class="col-12 col-md-10 row mb-auto mt-auto">
             <!-- Left/top of page -->
-            <div class="col-12 col-md-6">
-                <h1 class="col-12 text-center mt-3 pb-0"> <i id="divPercipitationIcon" class="bi bi-cloud-lightning-fill" style="font-size: 130px !important;"></i> </h1>
+            <div class="col-12 col-md-6 mb-5">
+                <h1 class="col-12 text-center pb-0"> <i id="divPercipitationIcon" class="bi bi-cloud-lightning-fill" style="font-size: 130px !important;"></i> </h1>
                 <h2 id="divPercipitation" class="col-12 text-center pb-2 text-white" style="font-size: 45px;"> </h2>
                 <h3 id="divTemperature" class="col-12 text-center text-white"style="font-size: 40px;"> </h3>
                 <h3 id="divHumidity" class="col-12 text-center text-white"style="font-size: 40px;"> </h3>
             </div>
 
             <!-- Right/bottom of page -->
-            <div class="col-12 col-md-6 mt-0">
+            <div class="col-12 col-md-6">
                 <h1 class="text-center mb-0"> 7 Day Forcast </h1>
                 <div class="overflow-auto mt-0">
                     <table id="tblDailyWeather" class="table-info  text-white compact display mt-0" aria-label="Table showing weather information for the next 7 days">
@@ -58,7 +57,7 @@
 
         </div>
 
-        <footer class="">
+        <footer>
             Weather data provided by <a href="https://open-meteo.com/">Open-Meteo</a>.
         </footer>
     </div>
