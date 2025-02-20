@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +29,7 @@
 </head>
 
 <body style="background: linear-gradient(to bottom right, rgb(142, 206, 209) 0%, rgb(54, 97, 124) 100%); height: 100%; margin: 0; background-repeat: no-repeat; background-attachment: fixed;">
-    <div class="d-flex flex-column  align-items-center vh-100">
+    <div class="d-flex flex-column align-items-center vh-100 text-white">
 
         <div class="col-12 col-md-10 row mb-auto mt-auto">
             <!-- Left/top of page -->
@@ -42,9 +42,9 @@
 
             <!-- Right/bottom of page -->
             <div class="col-12 col-md-6">
-                <h1 class="text-center mb-0"> 7 Day Forcast </h1>
+                <h1 class="text-center mb-0">7 Day Forcast</h1>
                 <div class="overflow-auto mt-0">
-                    <table id="tblDailyWeather" class="table-info compact display mt-0" style="border-radius: 15px; overflow:hidden; background-color: white; " aria-label="Table showing weather information for the next 7 days">
+                    <table id="tblDailyWeather" class="table compact mt-0" style="border-radius: 15px; overflow:hidden; background-color: white; " aria-label="Table showing weather information for the next 7 days">
                         <thead>
                             <tr>
                                 <th></th> <th>Date</th> <th>Temp High</th> <th>Temp Low</th> <th>Sun Rise</th> <th>Sun Set</th> <th>Rain</th>
@@ -73,35 +73,14 @@
     <script src="https://cdn.datatables.net/responsive/3.0.4/js/responsive.dataTables.js"></script>
 
     <script>
-        // Determine if you can get the GPS location of the device being used
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    let latitude = position.coords.latitude;
-                    let longitude = position.coords.longitude;
-                    getWeather(latitude,longitude)
-                },
-                (error) => {
-                    Swal.fire({
-                        title: "Oh no, you have an error!",
-                        html: "Location features must be enabled to retrieve weather informartion",
-                        icon: "error"
-                    });
-                    console.error("Error getting location:", error.message);
-                }
-            );
-        } else {
-            console.error("Geolocation is not supported by this browser.");
-        }
-
-        // API parameters
+        // API parameters used in call
         const strBaseWeatherUrl = 'https://api.open-meteo.com/v1/forecast';
         const strRequestedData = 'current=temperature_2m,relative_humidity_2m,weather_code';
         const strHourly        = 'hourly=temperature_2m,relative_humidity_2m,precipitation_probability,rain,weather_code';
         const strDaily         = 'daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,daylight_duration,precipitation_sum,rain_sum';
         const strUnitArguments = 'temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FChicago&temporal_resolution=hourly_3';
 
-        // Convert weather codes to conditions and icons.
+        // Convert weather codes to conditions.
         const dctWeatherCodeConditions = {
             0: "Clear Sky",
             1: "Mainly Clear", 
@@ -132,6 +111,7 @@
             96: "Thunderstorm With Slight Hail",
             99: "Thunderstorm With Heavy Hail",
         }
+        // Convert weather codes to icons.
         const dctWeatherCodeIconsClasses = {
             0:  "bi-sun-fill",
             1:  "bi-cloud-sun-fill",
@@ -163,35 +143,27 @@
             99: "bi-cloud-lightning-fill"
         }
 
-        // Create new data table for 7 day forcast
-        let table = new DataTable('#tblDailyWeather', {
-            info: false,
-            ordering: false,
-            searching: false,
-            paging: false,
-            responsive: true
-        });
 
-        // Call the weather api and populate the dynamic features.
+        // Calls the weather api and populate the dynamic features.
         async function getWeather(strUserLatitude, strUserLongitude) {
-            // This is a response, not data. Need the await to avoid a race condition.
             try { 
+                // Call API and convert response to json
                 const objResponse =  await fetch(`${strBaseWeatherUrl}?latitude=${strUserLatitude}&longitude=${strUserLongitude}&${strRequestedData}&${strHourly}&${strDaily}&${strUnitArguments}`)
                 if (!objResponse.ok) {
                     throw new Error(`HTTP Error Status: ${objResponse.status}`);
                 }
                 const objData = await objResponse.json();
 
-                // Set the weather icon, temperature, and humidity
+                // Set the weather icon, condition, temperature, and humidity
                 document.querySelector("#divPercipitationIcon").className = `bi ${dctWeatherCodeIconsClasses[objData.current.weather_code]}`
                 document.querySelector("#divPercipitation").innerHTML = `${dctWeatherCodeConditions[objData.current.weather_code]}`
-                document.querySelector("#divTemperature").innerHTML = `<i class="bi bi-thermometer-half me-2"></i>${objData.current.temperature_2m} ${objData.current_units.temperature_2m}`
-                document.querySelector("#divHumidity").innerHTML = `<i class="bi bi-droplet me-2"></i>${objData.current.relative_humidity_2m} ${objData.current_units.relative_humidity_2m}`
+                document.querySelector("#divTemperature").innerHTML = `<i class="bi bi-thermometer-half me-2" aria-label="Icon showing a thermometer representing the temperature"></i>${objData.current.temperature_2m} ${objData.current_units.temperature_2m}`
+                document.querySelector("#divHumidity").innerHTML = `<i class="bi bi-droplet me-2" aria-label="Icon showing a rain droplet representing humidity."></i>${objData.current.relative_humidity_2m} ${objData.current_units.relative_humidity_2m}`
 
                 // Add 7 day forcast to the table
-                let dataString = "";
+                let strTableRows = "";
                 for (let i = 0; i < objData.daily.time.length; i++){
-                    dataString += `<tr> 
+                    strTableRows += `<tr> 
                         <td> <i class="bi ${dctWeatherCodeIconsClasses[objData.current.weather_code]}" aria-label="Icon showing the weather conditions can be described as ${dctWeatherCodeConditions[objData.current.weather_code]}."></i></td>  
                         <td>${objData.daily.time[i]}</td> 
                         <td>${objData.daily.temperature_2m_max[i]} ${objData.daily_units.temperature_2m_max}</td> 
@@ -201,11 +173,50 @@
                         <td>${objData.daily.precipitation_sum[i]} ${objData.daily_units.precipitation_sum}</td> 
                     </tr> `
                 }
-
-                document.querySelector('#tblDailyWeatherData').innerHTML = dataString;
+                document.querySelector('#tblDailyWeatherData').innerHTML = strTableRows;
             } catch (objError) {
                 console.log('Error fetching objData', objError);
             }
+        }
+
+
+        // Create new data table for 7 day forcast
+        let table = new DataTable('#tblDailyWeather', {
+            info: false,
+            ordering: false,
+            searching: false,
+            paging: false,
+            responsive: true
+        });
+
+
+        // Determine if you can get the GPS location of the device being used
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    // Get location data from lat/long
+                    let latitude = position.coords.latitude;
+                    let longitude = position.coords.longitude;
+                    getWeather(latitude,longitude)
+                },
+                (error) => {
+                    // Location permissions were not allowed.
+                    Swal.fire({
+                        title: "Oh no, you have an error!",
+                        html: "Location features must be enabled to retrieve weather informartion",
+                        icon: "error"
+                    });
+                    console.error("Error getting location:", error.message);
+                }
+            );
+        } else {
+            // The app can not get weather data without gps information
+            console.error("Geolocation is not supported by this browser.");
+            Swal.fire({
+                title: "Oh no, you have an error!",
+                html: "This devices must have location features to provide acurate weather data.",
+                icon: "error"
+            });
         }
 
     </script>
@@ -215,5 +226,5 @@
 <!-- Generative AI Note: I used generative AI to help with the apple 
  safari shortcut section. It recommened changing the image resolutions 
  Burchfield had in the instructions. It also said to add a transparent
- tool bar instead. All content in the body was generated by the AI living
- between my ears. -->
+ tool bar instead. AI also suggested roudning corners to make things
+ look better ;) -->
