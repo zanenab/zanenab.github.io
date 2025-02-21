@@ -164,14 +164,14 @@
                 // Add 7 day forcast to the table
                 let strTableRows = "";
                 for (let i = 0; i < objData.daily.time.length; i++){
-                    let maxTemp = Math.trunc(objData.daily.temperature_2m_max[i])
-                    let minTemp = Math.trunc(objData.daily.temperature_2m_min[i])
-                    let curDat = objData.daily.time[i].slice(5)
+                    let intMaxTemp = Math.trunc(objData.daily.temperature_2m_max[i])
+                    let intMinTemp = Math.trunc(objData.daily.temperature_2m_min[i])
+                    let strCurDate = objData.daily.time[i].slice(5)
                     strTableRows += `
                     <tr class="pb-0 pt-5"> 
-                        <td class="text-center"> <i class="bi ${dctWeatherCodeIconsClasses[objData.current.weather_code]}" aria-label="Icon showing the weather conditions can be described as ${dctWeatherCodeConditions[objData.current.weather_code]}."></i></td>  
-                        <td>${curDat}</td> 
-                        <td>${minTemp} - ${maxTemp} ${objData.daily_units.temperature_2m_max}</td> 
+                        <td class="text-center"> <i class="bi ${dctWeatherCodeIconsClasses[objData.daily.weather_code[i]]}" aria-label="Icon showing the weather conditions can be described as ${dctWeatherCodeConditions[objData.current.weather_code]}."></i></td>  
+                        <td>${strCurDate}</td> 
+                        <td>${intMinTemp} - ${intMaxTemp} ${objData.daily_units.temperature_2m_max}</td> 
                         <td>${objData.daily.sunrise[i].slice(11)} - ${objData.daily.sunset[i].slice(11)}</td>
                     </tr> `
 
